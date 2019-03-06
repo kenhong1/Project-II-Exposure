@@ -7,8 +7,9 @@ body{
     margin: 0 auto; 
 }
 
-#map{
-    width: 80vh;
-    height: 80vh;
+#unsplashBox{
+    width: 100vh;
+    height: 100vh;
     margin: 0 auto;
+    background-color: black;
 }

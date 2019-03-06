@@ -13,6 +13,19 @@ const methodOverride = require("method-override");
 const upload = multer({dest: "./upload/"});
 const cloudinary = require('cloudinary'); 
 
+const Unsplash = require('unsplash-js').default;
+
+const UnsplashApi = new Unsplash({
+  applicationId: process.env.UNSPLASH_ACCESS_KEY,
+  secret: process.env.UNSPLASH_SECRET_KEY
+});
+
+
+
+
+
+
+
 require("dotenv").config(); 
 const SequelizeStore = require("connect-session-sequelize")(session.Store); 
 
@@ -55,7 +68,11 @@ app.use(function(req, res, next){
   next();
 })
 
-// ************************************************************************************************************************
+
+
+// ************************************************ SERVER ROUTES ************************************************ 
+
+//UNPLASH API CALL 
 
 //index (home)
 app.get('/', function(req, res) {
@@ -66,11 +83,6 @@ app.get('/', function(req, res) {
 app.get('/profile', isLoggedIn, function(req, res) {
   res.render('profile');
 });
-
-
-
-
-
 
 // UPLOAD CLOUDINARY
 // app.get('/upload', function(req, res) {

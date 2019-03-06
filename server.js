@@ -1,4 +1,5 @@
 const express = require('express');
+const request = require('request');
 const db = require("./models");
 const ejsLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
@@ -8,6 +9,7 @@ const flash = require("connect-flash");
 const isLoggedIn = require("./middleware/isLoggedIn"); 
 const helmet = require("helmet")
 const multer = require("multer"); 
+const methodOverride = require("method-override"); 
 const upload = multer({dest: "./upload/"});
 const cloudinary = require('cloudinary'); 
 
@@ -16,12 +18,12 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
 
-app.set('view engine', 'ejs');
-
+app.set('view engine','ejs');
+app.use(methodOverride("_method")); 
+app.set("layout extractScripts", true); 
 app.use(express.static("static"));  
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.set("layout extractScripts", true); 
 app.use(ejsLayouts);
 app.use(helmet()); 
 
@@ -29,14 +31,6 @@ const sessionStore = new SequelizeStore({
   db: db.sequelize,
   expiration: 30 * 60 * 1000
 }); 
-
-
-// GEO Coder 
-const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
-const geocodingClient = mbxGeocoding({
-    accessToken: process.env.MAP_BOX_KEY
-});  
-
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -68,50 +62,39 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-
-//location
-app.get("/location", function(req, res){
-  res.render("location")
-})
-
-
 //profile
 app.get('/profile', isLoggedIn, function(req, res) {
   res.render('profile');
 });
 
 
-// upload CLOUDINARY
-app.get('/upload', function(req, res) {
-  var public_id = "euwaw2atg7xuvewiahue"
-  var imgUrl = cloudinary.url(public_id, {width: 500, height: 500, crop: 'crop', gravity: 'face', radius: 'max'})
-  res.render('index', {src:imgUrl});
-});
-
-app.post("/upload", upload.single('myFile'), function(req, res){
-  cloudinary.uploader.upload(req.file.path, function(result){
-    res.send(result); 
-  });
-});
 
 
-// MAPBOX GEOCODEr
-app.get("/locations/location", function(req, res){
-  geocodingClient.forwardGeocode({
-      query: "bar " + req.query.city + ", " + req.query.state
-  }).send().then(function(response){
-      let results = []
-      response.body.features.forEach(function(feature){
-          results.push(feature.center); 
-      })
-      res.render("show", {results})
-  })
-});
+
+
+// UPLOAD CLOUDINARY
+// app.get('/upload', function(req, res) {
+//   var public_id = "euwaw2atg7xuvewiahue"
+//   var imgUrl = cloudinary.url(public_id, {width: 500, height: 500, crop: 'crop', gravity: 'face', radius: 'max'})
+//   res.render('index', {src:imgUrl});
+// });
+
+// app.post("/upload", upload.single('myFile'), function(req, res){
+//   cloudinary.uploader.upload(req.file.path, function(result){
+//     res.send(result); 
+//   });
+// });
+
+
 
 
 
 
 app.use('/auth', require('./controllers/auth'));
+app.use('/locations', require('./controllers/locations'));
+app.use('/images', require('./controllers/images'));
+app.use('/spots', require('./controllers/spots'));
+
 
 const server = app.listen(process.env.PORT || 3000);
 

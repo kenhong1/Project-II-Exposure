@@ -1,4 +1,14 @@
+body{
+    background: white;
+}
+
 #navLinks{
     text-align: center;
     margin: 0 auto; 
+}
+
+#map{
+    width: 80vh;
+    height: 80vh;
+    margin: 0 auto;
 }

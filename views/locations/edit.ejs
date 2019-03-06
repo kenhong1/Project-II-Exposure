@@ -1,0 +1,14 @@
+<h1> Editing a Location </h1>
+
+
+
+<form method = "POST" action = "/locations/<%= locations.id %>?_method=PUT">
+    <input type = "text" name = "name" value = "<%= locations.name %>"> <br>
+    <input type = "submit" value = "update"> 
+</form>
+
+
+<form method="POST" action="/locations/<%= locations.id %>?_method=DELETE">
+    <input type="submit" value="delete"> 
+</form>
+

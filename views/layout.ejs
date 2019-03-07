@@ -3,18 +3,24 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Exposure</title>
+    <title >Exposure</title>
 
     
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     <link rel ="stylesheet" href="/css/style.css"> 
+
   </head>
   <body>
     <div class="container">
       <%- JSON.stringify(currentUser) %> 
-
-      <h1>Exposure</h1>
+      <div class="logo">
+          <img src="/img/logo.png" alt="example" class="logo"/>
+        </div>
+      <h1 id="exposure">Xposure</h1>
+      <p id="slogan"> Find. Create. Enjoy </p>
       <% include partials/alerts %> 
       <%- body %>
     </div>

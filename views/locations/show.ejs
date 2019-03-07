@@ -1,16 +1,25 @@
-<h1>  <%= location.name %> </h1>
+<body id="page"></body>
+<form method="GET" action="/profile">
+    <h1 id="locName">  <%= location.name %> </h1>
+    <input hidden type="text" name="name" value="<%= location.name %>">
+    <button class="btn btn-primary" type="submit">Add to Profile</button>
+</form>
+
 
 <a href = "/locations/<%= location.id %>/edit"> Edit - </a>
 <a href="/posts/new"> Upload - </a>
 <a href = "/locations/index"> Locations - </a>
-<a href = ""> Add To Profile - </a>
 <a href = "/"> Home </a>
 <hr/>
 
 <h2> Gallery </h2>
-
-<div id = "unsplashBox">     
-
+<p> Find what shots people are taking and get inspired! </p>
 
 
-</div>
+    <div class="grid-item"> 
+            <% unsplashPics.forEach( function(pic) { %>
+                <img id="unplashPic"src="<%= pic.urls.regular %>" alt="" srcset="">
+            <%= "Instagram" + " " + pic.user.instagram_username %>
+            <% }); %>
+    </div>
+        

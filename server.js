@@ -17,7 +17,8 @@ const Unsplash = require('unsplash-js').default;
 
 const UnsplashApi = new Unsplash({
   applicationId: process.env.UNSPLASH_ACCESS_KEY,
-  secret: process.env.UNSPLASH_SECRET_KEY
+  secret: process.env.UNSPLASH_SECRET_KEY,
+  callBackUrl:process.env.UNSPLASH_CALL_BACK
 });
 
 

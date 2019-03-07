@@ -1,15 +1,97 @@
-body{
-    background: white;
+
+
+/* background changer */
+body{ 
+    background: no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
+    background-size: cover;
+    font-family: 'Julius Sans One', sans-serif;
 }
 
-#navLinks{
-    text-align: center;
-    margin: 0 auto; 
+a {
+    color: white;
 }
+
+p{
+    color: white;
+}
+
+h2, h3 {
+    color: white;
+}
+
+#slogan{
+    color: white;
+    font-family: 'Lobster', cursive;
+    letter-spacing: .1em;
+}  
+#welcome,#random{
+    color: white;
+}
+
+#locName{
+    color: white;
+}
+
+#page{
+    background-image: url("/img/background1.jpg")
+}
+
+
+#exposure{
+    color: white;
+    -webkit-text-stroke: 2px white;
+    font-family: 'Lobster', cursive;
+    font: 20em;
+    letter-spacing: .1em;
+    left:4.5vh;
+    position: relative;
+}
+
+#forEachBox{
+    color: white;
+}
+
 
 #unsplashBox{
     width: 100vh;
     height: 100vh;
     margin: 0 auto;
     background-color: black;
+}
+
+#signUp{
+    color: white;
+}
+#login{
+    color: white;
+}
+
+.logo{
+    width: 5vh;
+    height: 5vh;
+    color: white;
+    position:relative; top:3.7vh; left:-3px;
+}
+
+.grid-container {
+    display: grid;
+    grid-column-gap: 50px;
+    grid-template-columns: auto auto auto;
+    padding: 10px; 
+} 
+
+.grid-item {
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    color: white;
+}
+
+.wel{
+    color: white;
 }

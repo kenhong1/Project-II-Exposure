@@ -34,18 +34,24 @@ router.get("/:id", function(req, res){
         where: {id: parseInt(req.params.id)},
         include: [db.image] 
     }).then(function(location){
-        console.log(process.env)
-        var unsplashUrl = `https://api.unsplash.com/search/photos?page=1&query=${location.name}&client_id=${process.env.UNSPLASH_ACCESS_KEY}`
-            // request call to API
+        var unsplashUrl = `https://api.unsplash.com/search/photos?public[make]&page=2&query=${location.name}&client_id=${process.env.UNSPLASH_ACCESS_KEY}`
             request(unsplashUrl, function(error, response, body){
             var unsplashPics = JSON.parse(body).results;
             res.render("locations/show", {unsplashPics, location} )
-            console.log(body)
-            console.log("************************ ⬆️ ⬆️ ⬆️  UNSPLASH API CALL ABOVE ⬆️ ⬆️ ⬆️ ************************");
+            // res.json(unsplashPics)
+            // console.log(body)
+            // console.log("************************ ⬆️ ⬆️ ⬆️  UNSPLASH API CALL ABOVE ⬆️ ⬆️ ⬆️ ************************");
+
+
         });
     });
 });
 
+
+
+
+
+            
 // EDIT 1 LOCATION BY ID
 router.get("/:id/edit", function(req, res){
     db.location.findById(parseInt(req.params.id)).then(function(locations){
@@ -54,38 +60,18 @@ router.get("/:id/edit", function(req, res){
     });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // UPDATE 1 THE LOCATION BY ID
 router.put("/:id", function(req,res) {
     db.location.update({
             name: req.body.name,
     },  {
         where: {
-            name: req.params.name
+            id: req.params.id
     }
         }).then(function(locations) {
         res.redirect("/locations/index");
         });
     });
-
-
-
-
-
-
-
 
 // DELETE
 router.delete("/:id", function(req, res){

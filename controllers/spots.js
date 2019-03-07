@@ -6,7 +6,11 @@ const router = express.Router();
 
 // Post onto Profiles Page
 router.get("/profile/spots", function(req, res){
-    res.send("hello")
+    db.usersLocations.create({
+        id:req.params.id
+    }).then(function(){
+        res.redirect("/profile")
+    });
 }); 
 
 
@@ -14,16 +18,6 @@ router.get("/profile/spots", function(req, res){
 router.delete("/spots/:id", function(req,res){
     res.send("delete")
 })
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -5,6 +5,7 @@
 <hr />
 <H3> Pick A Spot! </H3>
 
+<div id =forEachBox>
 <% locations.forEach(function(location){%>
     <div class = "wel"> 
         <h2> <a href="/locations/<%= location.id %>">
@@ -12,8 +13,8 @@
         </a></h2>
     </div>
 <% }) %> 
+</div>
 
-
-
+<body id="page"></body>
 
 

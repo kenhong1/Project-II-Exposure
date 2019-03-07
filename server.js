@@ -82,7 +82,12 @@ app.get('/', function(req, res) {
 
 //profile
 app.get('/profile', isLoggedIn, function(req, res) {
-  res.render('profile');
+  db.user.findById(req.user.id).then( function(user){
+    user.getLocations().then( function(locations) {
+      // res.json({user,locations})
+      res.render('profile', {user,locations})
+    })
+  })
 });
 
 // UPLOAD CLOUDINARY
@@ -106,7 +111,7 @@ app.get('/profile', isLoggedIn, function(req, res) {
 app.use('/auth', require('./controllers/auth'));
 app.use('/locations', require('./controllers/locations'));
 app.use('/images', require('./controllers/images'));
-app.use('/spots', require('./controllers/spots'));
+app.use('/collections', require('./controllers/collections'));
 
 
 const server = app.listen(process.env.PORT || 3000);

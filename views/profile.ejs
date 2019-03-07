@@ -1,12 +1,27 @@
 
 <a class ="navLinks" href  ="/">Home</a>
 <a class ="navLinks" href  = "/images">Images</a>
-<a class ="navLinks" href  ="/locations/index"> Locations </a>
-<h1 id="welcome"> Welcome! </h1> 
+<a class ="navLinks" href  ="/locations/"> Locations </a>
+<h1 id="welcome"> Welcome To Your Profile! </h1> 
+<p id="inspire"> Add a Location!</p>
 
-<h2 id="profilePage">Profile Page</h2>
 
-<h1 id ="random"> this is where your spots go</h1>
+
+
+<% locations.forEach(function(location){ %> 
+<% console.log(location) %> 
+    <div class = "wel"> 
+            <h2> <a href="/locations/<%= location.id %> ">
+                <%= location.name %> 
+            </a></h2>
+        </div>
+
+
+<% }) %> 
+
+
+
+
 
 
 <body id="page"></body>

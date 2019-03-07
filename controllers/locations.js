@@ -5,7 +5,7 @@ const request = require('request');
 
 
 // GET ALL LOCATIONS
-router.get("/index", function(req, res){
+router.get("/", function(req, res){
     db.location.findAll()
     .then(function(locations){
     res.render("locations/index", {locations})
@@ -41,15 +41,9 @@ router.get("/:id", function(req, res){
             // res.json(unsplashPics)
             // console.log(body)
             // console.log("************************ ⬆️ ⬆️ ⬆️  UNSPLASH API CALL ABOVE ⬆️ ⬆️ ⬆️ ************************");
-
-
         });
     });
 });
-
-
-
-
 
             
 // EDIT 1 LOCATION BY ID
@@ -80,16 +74,9 @@ router.delete("/:id", function(req, res){
             id: req.params.id
         }
     }).then(function(locations){
-        res.redirect("/locations/index")
+        res.redirect("/locations/")
     });
 });
-
-
-
-
-
-
-
 
 
 // cloudinaryUrl: results.public_id 

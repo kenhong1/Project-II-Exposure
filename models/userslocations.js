@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   usersLocations.associate = function(models) {
     // associations can be defined here
+
+  
   };
   return usersLocations;
 };

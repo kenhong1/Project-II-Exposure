@@ -1,9 +1,12 @@
 <body id="page"></body>
-<form method="GET" action="/profile">
-    <h1 id="locName">  <%= location.name %> </h1>
+
+<form method="POST" action="/collections">
     <input hidden type="text" name="name" value="<%= location.name %>">
+    <input hidden type="text" name="id" value="<%= location.id %>">
     <button class="btn btn-primary" type="submit">Add to Profile</button>
 </form>
+
+<h1 id="locName">  <%= location.name %> </h1>
 
 
 <a href = "/locations/<%= location.id %>/edit"> Edit - </a>
@@ -18,8 +21,10 @@
 
     <div class="grid-item"> 
             <% unsplashPics.forEach( function(pic) { %>
-                <img id="unplashPic"src="<%= pic.urls.regular %>" alt="" srcset="">
-            <%= "Instagram" + " " + pic.user.instagram_username %>
+            <img id="unplashPic"src="<%= pic.urls.regular %>" alt="" srcset="">
+            <p id="igD">    <%= "Instagram:" + " " + pic.user.instagram_username %>
+                            <%= "Description:" + " " + pic.description %> 
+            </p>
             <% }); %>
     </div>
         

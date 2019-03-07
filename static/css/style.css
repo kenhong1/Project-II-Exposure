@@ -29,7 +29,7 @@ h2, h3 {
     font-family: 'Lobster', cursive;
     letter-spacing: .1em;
 }  
-#welcome,#random{
+#welcome,#random, #editDelete{
     color: white;
 }
 
@@ -71,11 +71,25 @@ h2, h3 {
     color: white;
 }
 
+#new{
+    color: white;
+}
+
+#igD #inspire{
+    font-size: 20px;
+    color: white;
+}
+
+
+.submissionbutton {
+
+}
+
 .logo{
     width: 5vh;
     height: 5vh;
     color: white;
-    position:relative; top:3.7vh; left:-3px;
+    position:relative; top:3.3vh; left:-3px;
 }
 
 .grid-container {

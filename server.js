@@ -97,6 +97,7 @@ app.get("/about", function(req, res){
 
 
 //  ************************************************ CLOUDINARY  ************************************************ 
+
 // get ths form so you can post 
 app.get("/upload/new", function(req, res){
   res.render("upload/new")

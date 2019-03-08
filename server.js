@@ -54,7 +54,7 @@ app.use(session({
 }));
 
 //use this line once to set up the store table
-// sessionStore.sync(); 
+sessionStore.sync(); 
 
 
 // must come after SESSION and before PASSPORT

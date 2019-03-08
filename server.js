@@ -71,7 +71,7 @@ app.use(function(req, res, next){
 
 
 
-// ************************************************ SERVER ROUTES ************************************************ 
+// ************************************************ HOME/PROFILE/ABOUT ROUTES ************************************************ 
 
 //UNPLASH API CALL 
 
@@ -90,18 +90,52 @@ app.get('/profile', isLoggedIn, function(req, res) {
   })
 });
 
-// UPLOAD CLOUDINARY
-// app.get('/upload', function(req, res) {
-//   var public_id = "euwaw2atg7xuvewiahue"
-//   var imgUrl = cloudinary.url(public_id, {width: 500, height: 500, crop: 'crop', gravity: 'face', radius: 'max'})
-//   res.render('index', {src:imgUrl});
-// });
+//render the about page 
+app.get("/about", function(req, res){
+  res.render("about")
+})
 
-// app.post("/upload", upload.single('myFile'), function(req, res){
-//   cloudinary.uploader.upload(req.file.path, function(result){
-//     res.send(result); 
-//   });
-// });
+
+//  ************************************************ CLOUDINARY  ************************************************ 
+// get ths form so you can post 
+app.get("/upload/new", function(req, res){
+  res.render("upload/new")
+});
+
+//retrives a form to upload 
+app.get("/new", function(req, res){
+  var public_id = process.env.CLOUDINARY_PUBLIC_ID
+  var imgUrl = cloudinary.url(public_id)
+  res.render('show', {src:imgUrl});
+
+});
+
+//retreives uploaded imaged 
+app.get("/upload/show", function(req, res){
+  db.image.findAll()
+  .then(function(images){
+  res.render("upload/show", {images})
+  })
+}); 
+
+
+//post uploaded images 
+app.post("upload/show", upload.single('myFile'), function(req, res){
+  cloudinary.uploader.upload(req.file.path, function(result){
+    db.image.create({
+      where:{
+        
+      
+      }
+
+    }).then
+  res.redirect("/upload/show"); 
+  }); 
+});
+
+// cloudinaryUrl: results.public_id  
+
+
 
 
 
@@ -110,9 +144,7 @@ app.get('/profile', isLoggedIn, function(req, res) {
 
 app.use('/auth', require('./controllers/auth'));
 app.use('/locations', require('./controllers/locations'));
-app.use('/images', require('./controllers/images'));
 app.use('/collections', require('./controllers/collections'));
-
 
 const server = app.listen(process.env.PORT || 3000);
 

@@ -1,5 +1,6 @@
 <body id="page"></body>
 
+
 <form method="POST" action="/collections">
     <input hidden type="text" name="name" value="<%= location.name %>">
     <input hidden type="text" name="id" value="<%= location.id %>">
@@ -8,11 +9,10 @@
 
 <h1 id="locName">  <%= location.name %> </h1>
 
-
-<a href = "/locations/<%= location.id %>/edit"> Edit - </a>
-<a href="/posts/new"> Upload - </a>
-<a href = "/locations/index"> Locations - </a>
-<a href = "/"> Home </a>
+<a id="navBar" href= "/locations/<%= location.id %>/edit"> Edit</a>-
+<a id="navBar" href="/upload/"> Upload</a>-
+<a id="navBar" href= "/locations/"> Locations</a>-
+<a id="navBar" href= "/"> Home</a>
 <hr/>
 
 <h2> Gallery </h2>

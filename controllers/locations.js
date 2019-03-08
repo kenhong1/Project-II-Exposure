@@ -22,7 +22,7 @@ router.post("/", function(req, res){
     db.location.create(
         {name: req.body.name
     }).then(function(locations){
-        res.redirect("locations/index"); 
+        res.redirect("/locations/"); 
     });
 });
 
@@ -63,7 +63,7 @@ router.put("/:id", function(req,res) {
             id: req.params.id
     }
         }).then(function(locations) {
-        res.redirect("/locations/index");
+        res.redirect("/locations/");
         });
     });
 

@@ -64,7 +64,7 @@ h2, h3 {
     background-color: black;
 }
 
-#signUp{
+#signUp {
     color: white;
 }
 #login{
@@ -75,21 +75,20 @@ h2, h3 {
     color: white;
 }
 
-#igD #inspire{
+#igD #inspire {
     font-size: 20px;
     color: white;
 }
 
-
-.submissionbutton {
-
+#newUpload, #yourPhotos{
+    color:white;
 }
 
 .logo{
     width: 5vh;
     height: 5vh;
     color: white;
-    position:relative; top:3.3vh; left:-3px;
+    position:relative; top:3.3vh; left:-5.5px;
 }
 
 .grid-container {

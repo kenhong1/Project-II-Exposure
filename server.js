@@ -54,7 +54,7 @@ app.use(session({
 }));
 
 //use this line once to set up the store table
-sessionStore.sync(); 
+// sessionStore.sync(); 
 
 
 // must come after SESSION and before PASSPORT
@@ -77,11 +77,16 @@ app.use(function(req, res, next){
 
 //index (home)
 app.get('/', function(req, res) {
-  res.render('index');
+  if (req.user) {
+    res.redirect('/profile')
+  } else {
+    res.render('index');
+  }
 });
 
 //profile
 app.get('/profile', isLoggedIn, function(req, res) {
+  console.log('hitting the get profile route post login')
   db.user.findById(req.user.id).then( function(user){
     user.getLocations().then( function(locations) {
       // res.json({user,locations})
@@ -94,54 +99,6 @@ app.get('/profile', isLoggedIn, function(req, res) {
 app.get("/about", function(req, res){
   res.render("about")
 })
-
-
-//  ************************************************ CLOUDINARY  ************************************************ 
-
-// get ths form so you can post 
-app.get("/upload/new", function(req, res){
-  res.render("upload/new")
-});
-
-//retrives a form to upload 
-app.get("/new", function(req, res){
-  var public_id = process.env.CLOUDINARY_PUBLIC_ID
-  var imgUrl = cloudinary.url(public_id)
-  res.render('show', {src:imgUrl});
-
-});
-
-//retreives uploaded imaged 
-app.get("/upload/show", function(req, res){
-  db.image.findAll()
-  .then(function(images){
-  res.render("upload/show", {images})
-  })
-}); 
-
-
-//post uploaded images 
-app.post("upload/show", upload.single('myFile'), function(req, res){
-  cloudinary.uploader.upload(req.file.path, function(result){
-    db.image.create({
-      where:{
-        
-      
-      }
-
-    }).then
-  res.redirect("/upload/show"); 
-  }); 
-});
-
-// cloudinaryUrl: results.public_id  
-
-
-
-
-
-
-
 
 app.use('/auth', require('./controllers/auth'));
 app.use('/locations', require('./controllers/locations'));

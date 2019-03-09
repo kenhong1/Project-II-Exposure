@@ -10,7 +10,6 @@
 <h1 id="locName">  <%= location.name %> </h1>
 
 <a id="navBar" href= "/locations/<%= location.id %>/edit"> Edit</a>-
-<a id="navBar" href="/upload/"> Upload</a>-
 <a id="navBar" href= "/locations/"> Locations</a>-
 <a id="navBar" href= "/profile"> Profile </a>
 <hr/>
@@ -20,7 +19,7 @@
 
 
     <div class="grid-item"> 
-        
+
             <% unsplashPics.forEach( function(pic) { %>
             <img id="unplashPic"src="<%= pic.urls.regular %>" alt="" srcset="">
             <p id="igD">    <%= "Instagram:" + " " + pic.user.instagram_username %>

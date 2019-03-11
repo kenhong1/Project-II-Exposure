@@ -40,9 +40,7 @@ module.exports = (sequelize, DataTypes) => {
   user.associate = function(models) {
     // associations can be defined here
     models.user.hasMany(models.image);
-    models.user.belongsToMany(models.location,{through:"usersLocations"})
-    // models.collection.belongsToMany(models.user,{through:"usersCollections"})
-  
+    models.user.belongsToMany(models.location,{through:"usersLocations"})  
   };
 
   // **** function to compare entered password to hashed password ****

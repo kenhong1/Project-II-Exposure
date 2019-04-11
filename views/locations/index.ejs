@@ -6,15 +6,14 @@
 <H3> Pick A Location! </H3>
 
 <div id =forEachBox>
-<% locations.forEach(function(location){%>
-    <div class = "wel"> 
-        <h2> <a href="/locations/<%= location.id %>">
-            <%= location.name %> 
-        </a></h2>
+    <% locations.forEach(function(location){%>
+        <div class = "wel"> 
+            <h2> 
+                <%= results.posts.title %> 
+                <%= results.posts.body %> 
+            </a></h2>
+        </div>
+    <% }) %> 
     </div>
-<% }) %> 
-</div>
 
 <body id="page"></body>
-
-
